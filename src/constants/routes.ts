@@ -6,6 +6,7 @@ const ROUTES = {
   POPULAR: "/popular",
   SUBMIT: "/submit",
   USER_DETAIL: "/user/:userId",
+  RESET_PASSWORD: "/reset-password",
 };
 
 export default ROUTES;

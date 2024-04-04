@@ -44,7 +44,7 @@ const SignUpForm = () => {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <form onSubmit={handleSubmit(handleSubmitForm)} className="rounded-md bg-gray-100 border-2 w-1/3 h-96 flex flex-col items-center justify-center px-12 gap-y-3">
+      <form onSubmit={handleSubmit(handleSubmitForm)} className="rounded-md bg-gray-100 border-2 w-1/3 h-2/5 flex flex-col items-center justify-center px-12 gap-y-3">
         <div className="font-bold text-3xl">회원가입</div>
         <input {...register("email", { required: true })} type="email" placeholder="Email" className="border-gray-200 border-2 rounded-md w-full py-3 px-3" />
         <input {...register("password", { required: true })} type="password" placeholder="Password" className="border-gray-200 border-2 rounded-md w-full py-3 px-3" />
@@ -52,6 +52,9 @@ const SignUpForm = () => {
         <GithubButton />
         <Link href={ROUTES.LOGIN} className="underline text-blue-500">
           Go to Log In
+        </Link>
+        <Link href={ROUTES.RESET_PASSWORD} className="underline text-blue-500">
+          Go to Reset Password
         </Link>
         <div className="text-red-500 text-sm">{errors.root?.message}</div>
       </form>

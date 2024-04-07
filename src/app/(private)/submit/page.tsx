@@ -1,5 +1,7 @@
+import { SubmitForm } from "./_components/submit-form";
+
 const SubmitPage = () => {
-  return <div>SubmitPage</div>;
+  return <SubmitForm />;
 };
 
 export default SubmitPage;

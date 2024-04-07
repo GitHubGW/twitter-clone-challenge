@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
+import ROUTES from "@/constants/routes";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -19,7 +20,7 @@ const Post = ({ id, email, textarea, imageUrl, createdAt }: PostProps) => {
   const fromNow = dayjs(createdAt).fromNow();
 
   return (
-    <Link href={`/posts/${id}`}>
+    <Link href={ROUTES.POST_DETAIL(id)}>
       <div className="w-[576px] border-b border-gray-200 py-5 cursor-pointer">
         <div>
           <span className="font-semibold">{email}</span>

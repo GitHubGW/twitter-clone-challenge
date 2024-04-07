@@ -79,7 +79,7 @@ const SubmitForm = () => {
         <label htmlFor="file" className="text-lg cursor-pointer border-gray-200 border-2 w-full text-center bg-gray-900 text-white px-2 py-3 rounded-md">
           {Number(watch("file")?.length) > 0 ? watch("file")?.[0].name : "이미지 업로드"}
         </label>
-        <input {...register("file")} type="file" id="file" name="file" className="hidden border-gray-200 border-2 rounded-md w-full py-3 px-3" />
+        <input {...register("file")} type="file" id="file" name="file" className="hidden" />
         <input type="submit" value="작성하기" className="bg-slate-500 hover:bg-slate-600 text-white rounded-md w-full py-3 px-3 cursor-pointer" />
         <div className="text-red-500 text-sm">{errors.root?.message}</div>
       </form>

@@ -72,7 +72,7 @@ const PostDetail = ({ id, userId, email, textarea, imageUrl, createdAt }: PostDe
         {imageUrl && <Image src={imageUrl} width={150} height={150} alt="" className="mt-3" />}
         {isMe && (
           <div className="mt-10 flex items-center gap-3 justify-center">
-            <Link href={`/posts/${id}/edit`} className="flex-1 text-center bg-blue-500 px-4 py-2.5 text-white rounded-lg hover:bg-blue-600">
+            <Link href={ROUTES.POST_EDIT(id)} className="flex-1 text-center bg-blue-500 px-4 py-2.5 text-white rounded-lg hover:bg-blue-600">
               <button type="button">수정하기</button>
             </Link>
             <button onClick={handleClickDeleteButton} type="button" className="flex-1 bg-red-500 px-4 py-2.5 text-white rounded-lg hover:bg-red-600">

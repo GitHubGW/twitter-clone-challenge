@@ -6,9 +6,9 @@ const ROUTES = {
   POPULAR: "/popular",
   SUBMIT: "/submit",
   RESET_PASSWORD: "/reset-password",
-  USER_DETAIL: "/user/:userId",
-  POST_DETAIL: "/posts/:postId",
-  POST_EDIT: "/posts/:postId/edit",
+  USER_DETAIL: (userId: string | undefined) => `/users/${userId}`,
+  POST_DETAIL: (postId: string) => `/posts/${postId}`,
+  POST_EDIT: (postId: string) => `/posts/${postId}/edit`,
 };
 
 export default ROUTES;

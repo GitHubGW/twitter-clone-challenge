@@ -11,6 +11,7 @@ import { DocumentData, DocumentReference, doc, updateDoc } from "firebase/firest
 import { firebaseStorage, firebaseStore } from "@/libs/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ChangeEvent, useState } from "react";
+import ROUTES from "@/constants/routes";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
@@ -28,10 +29,10 @@ interface FormData {
   file: FileList | null;
 }
 
-const PostEditForm = ({ id, userId, email, textarea, imageUrl }: PostEditFormProps) => {
+const PostEditForm = ({ id, userId, email, textarea, imageUrl = "" }: PostEditFormProps) => {
   const { user } = useUser();
   const router = useRouter();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | undefined>(imageUrl);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(imageUrl);
   const isMe = user?.uid === userId;
   const {
     register,
@@ -79,7 +80,7 @@ const PostEditForm = ({ id, userId, email, textarea, imageUrl }: PostEditFormPro
     const documentReference = doc(firebaseStore, "posts", id);
     const downloadUrl = await handleUploadImage(formData, documentReference);
     await updateDoc(documentReference, { textarea: formData.textarea, imageUrl: downloadUrl || "" });
-    router.push(`/posts/${id}`);
+    router.push(ROUTES.POST_DETAIL(id));
   };
 
   return (

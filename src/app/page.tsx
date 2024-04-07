@@ -1,10 +1,11 @@
 import { Header } from "@/components/header";
+import Home from "@/components/home/home";
 
 const HomePage = () => {
   return (
     <div>
       <Header />
-      <h1>HomePage</h1>
+      <Home />
     </div>
   );
 };

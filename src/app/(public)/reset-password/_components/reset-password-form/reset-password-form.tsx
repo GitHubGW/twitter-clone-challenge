@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-interface ResetPasswordFormProps {
+interface FormData {
   email: string;
 }
 
@@ -17,11 +17,11 @@ const ResetPasswordForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ResetPasswordFormProps>({
+  } = useForm<FormData>({
     defaultValues: { email: "" },
   });
 
-  const handleSubmitForm: SubmitHandler<ResetPasswordFormProps> = async (formData) => {
+  const handleSubmitForm: SubmitHandler<FormData> = async (formData) => {
     try {
       await sendPasswordResetEmail(firebaseAuth, formData.email);
       setText("Password reset email sent");

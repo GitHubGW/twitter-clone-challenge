@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-interface SignUpFormProps {
+interface FormData {
   email: string;
   password: string;
 }
@@ -22,11 +22,11 @@ const SignUpForm = () => {
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm<SignUpFormProps>({
+  } = useForm<FormData>({
     defaultValues: { email: "", password: "" },
   });
 
-  const handleSubmitForm: SubmitHandler<SignUpFormProps> = async ({ email, password }) => {
+  const handleSubmitForm: SubmitHandler<FormData> = async ({ email, password }) => {
     try {
       clearErrors();
       const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);

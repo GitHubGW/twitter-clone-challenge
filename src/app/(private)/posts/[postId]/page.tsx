@@ -1,6 +1,6 @@
 "use client";
 
-import { PostDetail } from "@/components/post-detail";
+import { PostDetail } from "@/app/(private)/posts/[postId]/_components/post-detail";
 import { firebaseStore } from "@/libs/firebase";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";

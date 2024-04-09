@@ -1,4 +1,4 @@
-import { Post } from "@/components/post";
+import { Post } from "@/app/_components/post";
 import { firebaseStore } from "@/libs/firebase";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { UserCard } from "../user-card";

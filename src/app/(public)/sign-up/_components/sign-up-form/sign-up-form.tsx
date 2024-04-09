@@ -1,6 +1,6 @@
 "use client";
 
-import { GithubButton } from "@/components/github-button";
+import { GithubButton } from "@/app/(public)/_components/github-button";
 import ROUTES from "@/constants/routes";
 import { firebaseAuth } from "@/libs/firebase";
 import { FirebaseError } from "firebase/app";

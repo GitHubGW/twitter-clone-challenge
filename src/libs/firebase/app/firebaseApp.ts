@@ -1,4 +1,4 @@
-import firebaseConfig from "../configs/firebaseConfig";
+import firebaseConfig from "@/libs/firebase/configs/firebaseConfig";
 import { initializeApp } from "firebase/app";
 
 const firebaseApp = initializeApp(firebaseConfig);

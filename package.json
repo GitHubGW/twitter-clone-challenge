@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tscheck": "tsc --noEmit",
-    "predeploy": "npm run build",
-    "deploy": "firebase deploy"
+    "tscheck": "tsc --noEmit"
   },
   "dependencies": {
     "dayjs": "^1.11.10",

@@ -1,5 +1,6 @@
 "use client";
 
+import { setTokenInCookie } from "@/app/_utils/set-token-in-cookie";
 import ROUTES from "@/constants/routes";
 import { firebaseAuth } from "@/libs/firebase";
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
@@ -12,7 +13,9 @@ const GithubButton = () => {
   const handleClickGithubButton = async () => {
     try {
       const githubAuthProvider = new GithubAuthProvider();
-      await signInWithPopup(firebaseAuth, githubAuthProvider);
+      const userCredential = await signInWithPopup(firebaseAuth, githubAuthProvider);
+      const jsonWebToken = await userCredential.user.getIdToken();
+      setTokenInCookie(jsonWebToken);
       router.push(ROUTES.HOME);
     } catch (error) {
       console.log("GithubButton handleClickGithubButton error", error);

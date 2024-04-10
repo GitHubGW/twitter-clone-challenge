@@ -6,6 +6,7 @@ import { firebaseAuth } from "@/libs/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { removeTokenInCookie } from "@/app/_utils/remove-token-in-cookie";
 
 const Header = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const Header = () => {
     }
 
     await firebaseAuth.signOut();
+    removeTokenInCookie();
     router.push(ROUTES.LOGIN);
   };
 

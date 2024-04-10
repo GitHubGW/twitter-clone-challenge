@@ -1,9 +1,10 @@
 "use client";
 
-import { firebaseStore } from "@/libs/firebase";
+import { firebaseAuth, firebaseStore } from "@/libs/firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-import { Post } from "../post";
+import { Post } from "@/app/_components/post";
 import { useEffect, useState } from "react";
+import { LoadingSpinner } from "@/app/_components/loading-spinner";
 
 interface Post {
   id: string;
@@ -15,7 +16,13 @@ interface Post {
 }
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState<Post[]>([]);
+
+  const handleAuthStateReady = async () => {
+    await firebaseAuth.authStateReady();
+    setIsLoading(false);
+  };
 
   const getPosts = () => {
     const collectionReference = collection(firebaseStore, "posts");
@@ -37,6 +44,10 @@ const Home = () => {
   };
 
   useEffect(() => {
+    handleAuthStateReady();
+  }, []);
+
+  useEffect(() => {
     const unsubscribe = getPosts();
 
     return () => {
@@ -46,8 +57,12 @@ const Home = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <div className="border-blue-500 border-2 flex items-center flex-col">
+    <div className="flex items-center flex-col">
       {posts.map((post) => (
         <Post key={post.id} id={post.id} email={post.email} textarea={post.textarea} imageUrl={post.imageUrl} createdAt={post.createdAt} />
       ))}

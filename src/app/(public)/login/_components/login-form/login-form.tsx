@@ -8,6 +8,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { setTokenInCookie } from "@/app/_utils/set-token-in-cookie";
 
 interface FormData {
   email: string;
@@ -29,7 +30,9 @@ const LoginForm = () => {
   const handleSubmitForm: SubmitHandler<FormData> = async ({ email, password }) => {
     try {
       clearErrors();
-      await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+      const jsonWebToken = await userCredential.user.getIdToken();
+      setTokenInCookie(jsonWebToken);
       router.push(ROUTES.HOME);
     } catch (error) {
       if (error instanceof FirebaseError) {

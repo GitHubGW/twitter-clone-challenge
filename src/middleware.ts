@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getTokenInCookie } from "./app/_utils/get-token-in-cookie";
 
 const middleware = (request: NextRequest) => {
-  return NextResponse.next();
-};
+  const jsonWebToken = getTokenInCookie(request.cookies);
 
-export const config = {
-  matcher: [],
+  if (jsonWebToken) {
+    return NextResponse.next();
+  }
+
+  return NextResponse.redirect("http://localhost:3000/login");
 };
 
 export default middleware;
+
+export const config = {
+  matcher: ["/submit", "/posts/:postId/edit"],
+};

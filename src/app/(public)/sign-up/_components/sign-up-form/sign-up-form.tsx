@@ -1,6 +1,7 @@
 "use client";
 
 import { GithubButton } from "@/app/(public)/_components/github-button";
+import { setTokenInCookie } from "@/app/_utils/set-token-in-cookie";
 import ROUTES from "@/constants/routes";
 import { firebaseAuth } from "@/libs/firebase";
 import { FirebaseError } from "firebase/app";
@@ -31,6 +32,8 @@ const SignUpForm = () => {
       clearErrors();
       const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
       await updateProfile(userCredential.user, { displayName: email });
+      const jsonWebToken = await userCredential.user.getIdToken();
+      setTokenInCookie(jsonWebToken);
       router.push(ROUTES.HOME);
     } catch (error) {
       if (error instanceof FirebaseError) {

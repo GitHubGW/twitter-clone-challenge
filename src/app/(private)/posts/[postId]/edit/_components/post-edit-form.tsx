@@ -79,7 +79,7 @@ const PostEditForm = ({ id, userId, email, textarea, imageUrl = "" }: PostEditFo
   const handleSubmitForm: SubmitHandler<FormData> = async (formData) => {
     const documentReference = doc(firebaseStore, "posts", id);
     const downloadUrl = await handleUploadImage(formData, documentReference);
-    await updateDoc(documentReference, { textarea: formData.textarea, imageUrl: downloadUrl || "" });
+    await updateDoc(documentReference, { textarea: formData.textarea, imageUrl: downloadUrl || imageUrl });
     router.push(ROUTES.POST_DETAIL(id));
   };
 
